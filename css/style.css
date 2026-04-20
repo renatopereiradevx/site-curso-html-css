@@ -1,0 +1,276 @@
+:root {
+    --bg: #0f1724;
+    /* dark-blue */
+    --accent: #4df379;
+    /* purple */
+    --accent-2: #00e0a1;
+    /* mint */
+    --card: #0b1220;
+    --muted: #9ca3af;
+    --glass: rgba(255, 255, 255, 0.04);
+    --radius: 14px;
+}
+
+html,
+body {
+    height: 100dvh;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: radial-gradient(1200px 400px at 10% 10%, rgba(108, 99, 255, 0.08), transparent),
+        radial-gradient(1000px 300px at 95% 90%, rgba(0, 224, 161, 0.04), transparent),
+        linear-gradient(180deg, #071022 0%, #081024 100%);
+    color: #e6eef8;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-top: 70px;
+}
+
+
+/* NAV */
+.navbar-custom {
+    backdrop-filter: blur(6px);
+    background: linear-gradient(180deg, rgba(8, 12, 24, 0.6), rgba(8, 12, 24, 0.35));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.nav-brand {
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    color: var(--accent);
+}
+
+.hero-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 8px 30px rgba(6, 9, 18, 0.6);
+}
+
+.headline-text {
+    font-size: clamp(1.35rem, 2.4vw, 2.1rem);
+    line-height: 1.05;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.subhead {
+    color: var(--muted);
+    font-weight: 500
+}
+
+.price-badge {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 6px 20px rgba(108, 99, 255, 0.12);
+}
+
+/* FEATURES */
+.feature-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.01));
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.03)
+}
+
+/* MODULES */
+.module {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.00));
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.03)
+}
+
+/* CTA BAR */
+.cta-bar {
+    position: sticky;
+    bottom: 20px;
+    z-index: 1050;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+    max-width: 1140px;
+    left: 0;
+    right: 0;
+}
+
+.cta-inner {
+    background: linear-gradient(90deg, rgba(12, 16, 28, 0.9), rgba(12, 16, 28, 0.85));
+    border-radius: 999px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    display: flex;
+    gap: 12px;
+    align-items: center
+}
+
+/* Testimonials */
+.testimonial {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.00));
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.03)
+}
+
+/* FOOTER */
+footer {
+    padding: 40px 0 80px;
+    color: var(--muted)
+}
+
+#lista-oque-aprender {
+    text-align: left;
+    width: 40%;
+    margin: 0 auto;
+}
+
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .headline {
+        width: 100% !important;
+    }
+    
+    .headline-text {
+        font-size: 1.6rem
+    }
+    
+    .headline-video-vendas {
+        width: 100% !important;
+        height: 350px !important;
+    }
+}
+
+/* Responsive tweaks */
+@media (max-width:767px) {
+    .hero {
+        padding: 0 0 12px
+    }
+
+    .headline-text {
+        font-size: 1.4rem
+    }
+
+    .subhead {
+        font-size: 14px;
+    }
+
+    .cta-bar {
+        width: calc(100% - 24px)
+    }
+
+    .headline-video-vendas {
+        height: 250px !important;
+        width: 100% !important;
+    }
+
+    .headline {
+        width: 100% !important;
+    }
+
+    .box-para-quem h3 {
+         text-align: center;  
+         /* font-size: 1.2rem !important; */
+    }
+
+    .box-para-quem {
+        text-align: left !important;
+    }
+
+    .titulo-oferta {
+        text-align: center;
+    }
+
+    #lista-oque-aprender {
+        width: 95%;
+    }
+}
+
+
+/* small animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all .6s cubic-bezier(.2, .9, .2, 1)
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: none
+}
+
+
+/* HERO */
+.hero {
+    text-align: center;
+}
+
+.headline {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.headline-video-vendas {
+    margin: 0 auto;
+    width: 80%;
+    height: 400px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(72, 64, 235, 0.598);
+}
+
+.headline-cta {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.btn-headline {
+    background-color: var(--accent);
+    text-decoration: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    color: #222222;
+    font-weight: 600;
+}
+
+.btn-headline:hover {
+    color: #444444;
+    font-weight: 600;
+}
+
+.feature-card h5 {
+    color: var(--accent);
+    font-weight: 700;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+p.small {
+    color: #9d9d9d
+}
+
+.feature-card p {
+    font-size: 13px;
+}
+
+.accordion-button {
+    background-color: var(--card);
+    color: #e6eef8;
+    font-weight: bold;
+}
+
+.accordion-collapse {
+    background-color: var(--bg);
+    color: #b0b0b0;
+    font-size: 14px;
+}
+
+.botao-whatsapp {
+    position: fixed;
+    right: 20px;
+    bottom: 10px;
+}
