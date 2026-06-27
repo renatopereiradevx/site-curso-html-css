@@ -244,7 +244,7 @@ section.hero::after {
     background: linear-gradient(180deg, rgba(16, 26, 44, 0.96), rgba(6, 10, 18, 0.98));
     /* border: 1px solid rgba(77, 243, 121, 0.14); */
     border-radius: 34px;
-    padding: 48px;
+    padding: 48px 22px 0;
     box-shadow: 0 38px 120px rgba(0, 0, 0, 0.28), 0 0 120px rgba(77, 243, 121, 0.08);
     backdrop-filter: blur(28px);
 }
