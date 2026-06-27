@@ -1,50 +1,84 @@
-// Robust JS for animations and smooth scroll
 (function () {
-    try {
-        document.addEventListener('DOMContentLoaded', function () {
-            try {
-                // reveal elements (safe iteration and error handling)
-                var reveals = document.querySelectorAll('.reveal');
-                if (reveals && reveals.length) {
-                    setTimeout(function () {
-                        reveals.forEach(function (el, i) {
-                            setTimeout(function () {
-                                el.classList.add('show');
-                            }, i * 120);
-                        });
-                    }, 150);
+    'use strict';
+
+    function onReady(fn) {
+        if (document.readyState !== 'loading') {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+
+    function revealElements() {
+        var reveals = document.querySelectorAll('.reveal');
+        if (!reveals.length) {
+            return;
+        }
+
+        window.requestAnimationFrame(function () {
+            reveals.forEach(function (el, index) {
+                setTimeout(function () {
+                    el.classList.add('show');
+                }, index * 100);
+            });
+        });
+    }
+
+    function initSmoothScroll() {
+        var anchors = document.querySelectorAll('a[href^="#"]');
+        anchors.forEach(function (link) {
+            var href = link.getAttribute('href');
+            if (!href || href === '#') {
+                return;
+            }
+
+            link.addEventListener('click', function (event) {
+                try {
+                    var target = document.querySelector(href);
+                    if (target) {
+                        event.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                } catch (error) {
+                    console.warn('Smooth scroll failed for:', href, error);
+                }
+            });
+        });
+    }
+
+    function initFaqToggle() {
+        var toggles = document.querySelectorAll('.faq-toggle');
+        if (!toggles.length) {
+            return;
+        }
+
+        toggles.forEach(function (toggle) {
+            toggle.addEventListener('click', function () {
+                var faqItem = toggle.closest('.faq-item');
+                if (!faqItem) {
+                    return;
                 }
 
-                // Smooth scroll for anchor links
-                var anchors = document.querySelectorAll('a[href^="#"]');
-                anchors.forEach(function (a) {
-                    // read raw href attribute
-                    var href = a.getAttribute('href');
-                    // ignore empty or plain '#' anchors which are not valid selectors
-                    if (!href || href === '#') return;
+                var isOpen = faqItem.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', String(isOpen));
 
-                    a.addEventListener('click', function (e) {
-                        // wrap selector usage in try/catch because some hrefs might not be valid selectors
-                        try {
-                            var target = document.querySelector(href);
-                            if (target) {
-                                e.preventDefault();
-                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            }
-                        } catch (selErr) {
-                            // invalid selector (rare) — fail gracefully
-                            console.warn('Anchor navigation skipped due to invalid selector:', href, selErr);
+                // Close other FAQ items if there are any open
+                document.querySelectorAll('.faq-item.open').forEach(function (item) {
+                    if (item !== faqItem) {
+                        item.classList.remove('open');
+                        var button = item.querySelector('.faq-toggle');
+                        if (button) {
+                            button.setAttribute('aria-expanded', 'false');
                         }
-                    });
+                    }
                 });
-
-
-            } catch (innerErr) {
-                console.error('Erro durante inicialização dos handlers da página:', innerErr);
-            }
+            });
         });
-    } catch (err) {
-        // Catch any unexpected bootstrap / script loading issues
-        console.error('Script initialization failed:', err);
     }
+
+    onReady(function () {
+        revealElements();
+        initSmoothScroll();
+        initFaqToggle();
+    });
 })();
